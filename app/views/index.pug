@@ -1,0 +1,29 @@
+doctype html
+html(ng-app="app")
+  head
+    title Safe Login with username & password
+    link(rel="stylesheet", href="css/bootstrap.css")
+  body
+    .container(ng-controller="LoginController as lc", ng-cloak)
+      .row
+        .col-sm-offset-4.col-sm-4
+          form.form.form-horizontal
+            .form-group
+              h3.text-center Safe Login
+            .form-group
+              input.form-control(ng-model="username", placeholder="Username")
+            .form-group
+              input.form-control(ng-model="password", type="password", placeholder="Password")
+            .form-group
+              //- .col-sm-6
+              button.btn.btn-block.btn-success(ng-click="registry()") Registry
+              //- .col-sm-6
+              button.btn.btn-block.btn-primary(ng-click="login()") Login
+            .form-group.text-center
+              p.text.text-success.form-static-control(ng-show="successMessage") {{successMessage}}
+              p.text.text-danger.form-static-control(ng-show="errorMessage") {{errorMessage}}
+              p.text.text-warning.form-static-control(ng-show="'loading'===status") Loading...
+    script(src="js/angular.js")
+    script(src="js/md5.min.js")
+    script(src="js/angular-resource.js")
+    script(src="js/app.js")

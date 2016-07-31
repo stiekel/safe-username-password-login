@@ -1,0 +1,43 @@
+{
+  "name": "safe-username-password-login",
+  "version": "0.0.1",
+  "description": "a safe login system with username and password",
+  "main": "bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stiekel/safe-username-password-login.git"
+  },
+  "keywords": [
+    "username",
+    "password",
+    "login",
+    "safe"
+  ],
+  "author": "stiekel <histkc@gmail.com> (http://chensd.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stiekel/safe-username-password-login/issues"
+  },
+  "homepage": "https://github.com/stiekel/safe-username-password-login#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "js-md5": "^0.4.1",
+    "log4js": "^0.6.38",
+    "method-override": "^2.3.6",
+    "pug": "^2.0.0-beta4",
+    "sails-disk": "^0.10.10",
+    "sails-mongo": "^0.12.1",
+    "waterline": "^0.12.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0"
+  }
+}
