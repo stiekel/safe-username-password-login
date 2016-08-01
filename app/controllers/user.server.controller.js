@@ -56,7 +56,6 @@ module.exports = {
       if(err) return next(err);
       if(!userDoc) return next(new Error('username not exists'));
 
-      console.log('userDoc:', userDoc);
       // get salt
       req.models.salt
       .findOne({id: userDoc.saltId})
