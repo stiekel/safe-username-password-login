@@ -1,4 +1,4 @@
-var md5 = require('js-md5');
+var sha256 = require('js-sha256').sha256;
 
 module.exports = {
   registry: function(req, res, next){
@@ -76,8 +76,8 @@ module.exports = {
 };
 
 function encryptPwd(usr, pwd, salt){
-  return md5(
-    md5(usr + md5(pwd + salt)) + salt + md5(usr + salt)
+  return sha256(
+    sha256(usr + sha256(pwd + salt)) + salt + sha256(usr + salt)
   )
 }
 

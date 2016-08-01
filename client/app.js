@@ -22,9 +22,9 @@ function LoginController($scope, $resource) {
   };
 
   function encryptPwd(username, password) {
-    return md5(
-      username + md5 (
-        md5(md5(md5(password))) + md5(username)
+    return sha256(
+      username + sha256 (
+        sha256(sha256(sha256(password))) + sha256(username)
       )
     );
   }

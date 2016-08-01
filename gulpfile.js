@@ -14,7 +14,8 @@ var files = [
   {src: 'node_modules/bootstrap/dist/**', dest: 'public/'},
   {src: 'node_modules/angular/angular.js', dest: 'public/js/'},
   {src: 'node_modules/angular-resource/angular-resource.js', dest: 'public/js/'},
-  {src: 'node_modules/js-md5/build/md5.min.js', dest: 'public/js/'},
+  // {src: 'node_modules/js-md5/build/md5.min.js', dest: 'public/js/'},
+  {src: 'node_modules/js-sha256/src/sha256.js', dest: 'public/js'},
   {src: 'client/app.js', dest: 'public/js/'}
 ];
 gulp.task('copyFile', function(){
