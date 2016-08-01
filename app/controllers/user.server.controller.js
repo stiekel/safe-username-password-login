@@ -49,27 +49,34 @@ module.exports = {
     if(!password) {
       return next(new Error('password required'));
     }
+    // find saltId of the username
     req.models.user
-    .findOne({username: username})
+    .findOne({select:['username', 'saltId'], where: {username: username}})
     .exec(function(err, userDoc){
       if(err) return next(err);
       if(!userDoc) return next(new Error('username not exists'));
 
+      console.log('userDoc:', userDoc);
+      // get salt
       req.models.salt
       .findOne({id: userDoc.saltId})
       .exec(function(err, saltDoc){
         if(err) return next(err);
         if(!saltDoc) return next(new Error('can NOT find salt'));
 
-        if(encryptPwd(username, password, saltDoc.salt) !== userDoc.password) {
-          return next(new Error('password error'));
-        }
+        // password check
+        req.models.user
+        .findOne({select: ['id'], where: {username: username, password: encryptPwd(username, password, saltDoc.salt) }})
+        .exec(function(err, doc){
+          if(err) return next(err);
+          if(!doc) return next(new Error('password error'));
 
-        res.json({
-          username: username
+          res.json({
+            username: username
+          });
+
+          return updateSalt(saltDoc, userDoc, password, next);
         });
-
-        return updateSalt(saltDoc, userDoc, password, next);
       });
     });
   }
@@ -83,7 +90,6 @@ function encryptPwd(usr, pwd, salt){
 }
 
 function updateSalt(saltDoc, userDoc, passwordInputed, next){
-  console.log('saltDoc:', saltDoc, 'userDoc:', userDoc);
   saltDoc.salt = Math.random().toString(15).substr(3,27);
   saltDoc.save(function(err){
     if(err) return next(err);
