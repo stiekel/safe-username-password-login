@@ -76,6 +76,7 @@ module.exports = {
 };
 
 function encryptPwd(usr, pwd, salt){
+  usr = usr.toLowerCase();
   return sha256(
     sha256(usr + sha256(pwd + salt)) + salt + sha256(usr + salt)
   )
